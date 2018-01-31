@@ -4,6 +4,9 @@
 
  cd /scratch/l/liuqy/zhang18/seisDD/GJI2016/fkSem_Tong/submit_job/
  
+ cd /scratch/l/liuqy/zhang18/seisDD/GJI2016/fkSem_Fang/submit_job/
+ 
+ 
  gfortran  -std=gnu -fimplicit-none -frange-check -O2 -pedantic -pedantic-errors -Waliasing -Wampersand -Wline-truncation -Wsurprising -Wunderflow -ffree-line-length-132 -I../../setup -c -o ../../obj/specfem2D.o ./specfem2D.F90
  
  
