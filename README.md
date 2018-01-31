@@ -2,6 +2,9 @@
 
 # 3D-2D
 
+scp -r zhangchao@222.195.79.32:~
+
+
  cd /scratch/l/liuqy/zhang18/seisDD/GJI2016/fkSem_Tong/submit_job/
  
  cd /scratch/l/liuqy/zhang18/seisDD/GJI2016/fkSem_Fang/submit_job/
