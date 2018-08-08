@@ -1,12 +1,6 @@
-$ ssh CCUSERNAME@niagara.computecanada.ca
-$ ssh nia-dm1
-$ scp -r SCINETUSERNAME@gpc-logindm01:\$SCRATCH/abc $SCRATCH/abc
-
-
-$ ssh SCINETUSERNAME@login.scinet.utoronto.ca
-$ ssh gpc-logindm01
-$ scp -r $SCRATCH/abc CCUSERNAME@nia-dm1:\$SCRATCH/abc
-
+# niagara account
+log in:
+ssh zhang18@niagara.computecanada.ca
 
 
 
