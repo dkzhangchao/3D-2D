@@ -1,3 +1,32 @@
+
+
+Marmosi model:
+```
+  cp -r data/marm ~/
+  mkdir -p job/01
+  cd job
+  vim README.md   # write some comments about case 01
+  cd 01
+  cp ../../model/marm/* .
+  vim SConstruct  # update the parameters is necessary
+  vim run.sh      # choose the task you want to start
+  ./run.sh				
+```
+
+BP model (multi-scale FWI):
+```
+case 2:
+  cp -r data/bp ~/
+  mkdir -p job/02
+  cd job
+  cd 02
+  cp ../../model/bp20/* .
+  ./scons.sh
+  ./multi.sh
+
+
+
+
 # niagara account
 log in:
 ssh zhang18@niagara.computecanada.ca
