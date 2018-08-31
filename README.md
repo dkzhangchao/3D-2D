@@ -23,6 +23,25 @@ case 2:
   cp ../../model/bp20/* .
   ./scons.sh
   ./multi.sh
+  
+######
+Full frequency
+scons: Reading SConscript files ...
+scons: done reading SConscript files.
+scons: Building targets ...
+scons: `vel_t0.rsf' is up to date.
+< vel_t0.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f1=0 n1=96 f2=0 n2=540 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput label1=Depth unit1=m label2=Lateral unit2=m > vel_t1.rsf
+< vel_t1.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f2=0 n2=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfspray axis=2 n=270 > vel_x0.rsf
+< vel_t1.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f2=539 n2=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfspray axis=2 n=270 > vel_x1.rsf
+< vel_x0.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfcat axis=2 vel_t1.rsf vel_x1.rsf > vel_t2.rsf
+< vel_t2.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f1=95 n1=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfspray axis=1 n=32 > vel_z1.rsf
+< vel_t2.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfcat axis=1 vel_z1.rsf > vel.rsf
+< vel.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfmath output="1/input" | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfsmooth rect1=5 rect2=750 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfmath output="1/input" > smvel.rsf
+< vel.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Marmousi model" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel.vpl
+< smvel.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Smoothed model" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > smvel.vpl
+scons: `Fig/marm.vpl' is up to date.
+/usr/sw-mpp/bin/bsub -I -q q_x86_share -n 1 -o bsub.out -J "essfwi" ./essfwi-damp-7-x vin=smvel.rsf shots=shots.rsf vreal=vel.rsf vout=vsnaps.rsf absobjs=absobjs.rsf norobjs=norobjs.rsf niter=600 seed=10 maxdv=200 nita=15 flo=0 fhi=-1
+Job <43512972> has been submitted to queue <q_x86_share>
 
 
 
