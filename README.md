@@ -45,6 +45,31 @@ Job <43512972> has been submitted to queue <q_x86_share>
 
 
 
+Job 43523496 has been finished.
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=49 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 50" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel50.vpl
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=99 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 100" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel100.vpl
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=199 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 200" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel200.vpl
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=299 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 300" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel300.vpl
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=399 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 400" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel400.vpl
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=499 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 500" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel500.vpl
+< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=599 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 600" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel600.vpl
+/home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/vppen size=r vpstyle=n gridnum=4,2 vel50.vpl vel100.vpl vel200.vpl vel300.vpl vel400.vpl vel500.vpl vel600.vpl > essvelset.vpl
+< absobjs.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="Absolute objective value" dash=0 plotfat=5 grid=y yreverse=n > absobjs.vpl
+< norobjs.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="Normalized objective value" dash=0 plotfat=5 grid=y yreverse=n > norobjs.vpl
+/usr/sw-mpp/bin/bsub -I -q q_x86_share -n 1 -o bsub.out -J "norm" ../../bin/norm realvel=vel.rsf velset=vsnaps.rsf l1norm=l1norm.rsf l2norm=l2norm.rsf
+Job <43523718> has been submitted to queue <q_x86_share>
+waiting for dispatch ...
+dispatching ...
+Current working dir: /home/export/online1/swyf/swcbw/projects/swfwi/job_201804/bp_linear_017
+Job 43523718 has been finished.
+< l1norm.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="l1norm" dash=0 plotfat=5 grid=y yreverse=n > l1norm.vpl
+< l2norm.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="l2norm" dash=0 plotfat=5 grid=y yreverse=n > l2norm.vpl
+scons: done building targets.
+Current frequency is 2Hz
+
+
+
+
 
 # niagara account
 log in:
