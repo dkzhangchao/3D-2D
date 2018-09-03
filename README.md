@@ -68,6 +68,16 @@ scons: done building targets.
 Current frequency is 2Hz
 
 
+sfin < absobjs_1.rsf
+sfwindow f3=3 n3=1  f2=2 n2=1 < shots.rsf > shots_3.rsf datapath=./
+sfin < shots_3.rsf
+./plot.sh shots_3
+sfpen shots_3.vpl
+sfgrey < shots_3.rsf > shots_3.vpl
+sfpen shots_3.vpl
+
+
+
 
 
 
