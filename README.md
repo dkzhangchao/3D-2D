@@ -1,71 +1,52 @@
-
-
-Marmosi model:
-```
-  cp -r data/marm ~/
-  mkdir -p job/01
-  cd job
-  vim README.md   # write some comments about case 01
-  cd 01
-  cp ../../model/marm/* .
-  vim SConstruct  # update the parameters is necessary
-  vim run.sh      # choose the task you want to start
-  ./run.sh				
-```
-
-BP model (multi-scale FWI):
-```
-case 2:
-  cp -r data/bp ~/
-  mkdir -p job/02
-  cd job
-  cd 02
-  cp ../../model/bp20/* .
-  ./scons.sh
-  ./multi.sh
-  
-######
-Full frequency
-scons: Reading SConscript files ...
-scons: done reading SConscript files.
-scons: Building targets ...
-scons: `vel_t0.rsf' is up to date.
-< vel_t0.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f1=0 n1=96 f2=0 n2=540 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput label1=Depth unit1=m label2=Lateral unit2=m > vel_t1.rsf
-< vel_t1.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f2=0 n2=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfspray axis=2 n=270 > vel_x0.rsf
-< vel_t1.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f2=539 n2=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfspray axis=2 n=270 > vel_x1.rsf
-< vel_x0.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfcat axis=2 vel_t1.rsf vel_x1.rsf > vel_t2.rsf
-< vel_t2.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f1=95 n1=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfspray axis=1 n=32 > vel_z1.rsf
-< vel_t2.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfcat axis=1 vel_z1.rsf > vel.rsf
-< vel.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfmath output="1/input" | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfsmooth rect1=5 rect2=750 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfmath output="1/input" > smvel.rsf
-< vel.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Marmousi model" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel.vpl
-< smvel.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Smoothed model" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > smvel.vpl
-scons: `Fig/marm.vpl' is up to date.
-/usr/sw-mpp/bin/bsub -I -q q_x86_share -n 1 -o bsub.out -J "essfwi" ./essfwi-damp-7-x vin=smvel.rsf shots=shots.rsf vreal=vel.rsf vout=vsnaps.rsf absobjs=absobjs.rsf norobjs=norobjs.rsf niter=600 seed=10 maxdv=200 nita=15 flo=0 fhi=-1
-Job <43512972> has been submitted to queue <q_x86_share>
-
-
-
-Job 43523496 has been finished.
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=49 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 50" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel50.vpl
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=99 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 100" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel100.vpl
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=199 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 200" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel200.vpl
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=299 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 300" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel300.vpl
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=399 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 400" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel400.vpl
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=499 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 500" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel500.vpl
-< vsnaps.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfwindow f3=599 n3=1 | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgrey title="Essfwi, iter 600" color=j allpos=y pclip=100 bias=1500 gainpanel=1 scalebar=y barreverse=y barunit=m/s barlabel=Velocity > vel600.vpl
-/home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/vppen size=r vpstyle=n gridnum=4,2 vel50.vpl vel100.vpl vel200.vpl vel300.vpl vel400.vpl vel500.vpl vel600.vpl > essvelset.vpl
-< absobjs.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="Absolute objective value" dash=0 plotfat=5 grid=y yreverse=n > absobjs.vpl
-< norobjs.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="Normalized objective value" dash=0 plotfat=5 grid=y yreverse=n > norobjs.vpl
-/usr/sw-mpp/bin/bsub -I -q q_x86_share -n 1 -o bsub.out -J "norm" ../../bin/norm realvel=vel.rsf velset=vsnaps.rsf l1norm=l1norm.rsf l2norm=l2norm.rsf
-Job <43523718> has been submitted to queue <q_x86_share>
-waiting for dispatch ...
-dispatching ...
-Current working dir: /home/export/online1/swyf/swcbw/projects/swfwi/job_201804/bp_linear_017
-Job 43523718 has been finished.
-< l1norm.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="l1norm" dash=0 plotfat=5 grid=y yreverse=n > l1norm.vpl
-< l2norm.rsf /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfput n2=1 label1=Iteration unit1= unit2= label2= | /home/export/online1/swyf/swcbw/softs/install_new/madagascar-1.6.4/bin/sfgraph title="l2norm" dash=0 plotfat=5 grid=y yreverse=n > l2norm.vpl
-scons: done building targets.
-Current frequency is 2Hz
+  1 #! /bin/bash
+  2 set -e
+  3 set -x
+  4 
+  5 scons -C ../../ -j12
+  6 
+  7 PARTITION_X=32
+  8 PARTITION_Y=10
+  9 TOTAL_MPI=$((PARTITION_X * PARTITION_Y))
+ 10 QUEUE=${QUEUE:-q_sw_share}
+ 11 
+ 12 bsub_job_name="sw-dh500-test"
+ 13 exec="../../bin/pmcl3d"
+ 14 #exec="./pmcl3d-sunway-gather-output-b6553d5-rank0-gather-and-write-snapshots"
+ 15 
+ 16 submit_cmd="/usr/sw-mpp/bin/bsub -I -b -m 1 -p -q  $QUEUE \
+ 17 -host_stack 1024 -share_size 7000 -n $TOTAL_MPI -cgsp 64 \
+ 18 -o bsub.out -J $bsub_job_name"
+ 19 #submit_cmd="/usr/sw-mpp/bin/bsub -I  -q  $QUEUE \
+ 20 #-n $TOTAL_MPI -o bsub.out -J $bsub_job_name"
+ 21 
+ 22 CMD="$submit_cmd   $exec \
+ 23   --NX 640 --NY 640 --NZ 120 -x $PARTITION_X -y $PARTITION_Y \ (网格大小)
+ 24   --TMAX 125.002 --DH 500.0 --DT 0.025 \ （总的时间长，网格间距，dt）
+ 25   --NSRC 13300 --NST 800 --READ_STEP 800 \ (源的总数，破裂)
+ 26   --READ_STEP_GPU 800 \
+ 27   --IFAULT 1 \ （1-线性 2-nolinear）
+ 28   --MESHP 1 \  (1 single file/ 0 文件夹／ 2 media.txt)
+ 29   --INSRC source \ (读取source这个单一文件)
+ 30   --NVE 1 \
+ 31   --MEDIASTART 2 \
+ 32   --NVAR 3 --INVEL input_rst \
+ 33   --NTISKP 50 \ (多少个快照输出一个文件)
+ 34   --WRITE_STEP 50 \ （多少步输出一个快照）相当于50*50输出一个动态图
+ 35   --FAC 1.0 --Q0 150. --EX 0.0 --FP 1.0 \ （震源的信息）
+ 36   --NBGX 1 --NEDX 640 \ （起始点，结束点）
+ 37   --NBGY 1 --NEDY 640 \
+ 38   --NBGZ 1 --NEDZ 1
+ 39 "
+ 40 
+ 41 rm -rf bsub.out output_ckp/* output_sfc/* && mkdir output_sfc output_ckp -p  ＃output_ckp 用于编译
+ 42 eval $CMD
+ 43 
+ 44 # od -f source | less 读取二进制文件 浮点数
+ 45 # od -d source | less 读取二进制文件 整数
+ 46 
+ 47 
+ 48 #CMD2="sfmath x=1.rsf y=c.rsf output=x-y | sfattr"
+ 49 #eval $CMD2
 
 
 sfin < absobjs_1.rsf
